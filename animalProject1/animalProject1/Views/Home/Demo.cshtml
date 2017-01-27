@@ -1,0 +1,505 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_layoutAnimal.cshtml";
+}
+
+@section scripts{
+    
+    <!-- *****************************************************************************************************************
+     BLUE WRAP
+     ***************************************************************************************************************** -->
+    <div id="blue">
+        <div class="container">
+            <div class="row">
+                <h3>Animal Mapper Tracker</h3>
+            </div><!-- /row -->
+        </div> <!-- /container -->
+    </div><!-- /blue -->
+    <!-- *****************************************************************************************************************
+     CONTACT WRAP
+     ***************************************************************************************************************** -->
+    @*<div id="contactwrap"></div>*@ <!-- /demo map wrap -->
+    <div ng-app="APPNAME" ng-cloak></div>
+    @*<div id="map"></div>*@
+    @*<script src="~/Scripts/AngularJS.googleMap.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSoMAOyII2G-FBsdcJOfeGUZMigvxJYu4&callback=initMap"
+            async defer>
+    </script>*@
+
+
+    <!-- *****************************************************************************************************************
+     CONTACT FORMS
+     ***************************************************************************************************************** -->
+
+
+    <div ng-cloak>
+        <main ui-view></main>
+        <script type="text/ng-template" id="/template/home.html">         
+            <div id="map"></div>            
+            <form role="form" name="mainCtrl.mainPage">
+                <br />
+                <button ui-sref="/input" type="button" class="btn btn-theme">Submit</button>
+                <button ui-sref="/get" type="button" class="btn btn-theme">GetAll</button>
+                <button ui-sref="/test" type="button" class="btn btn-theme">Extra</button>
+                <br />
+                <br />
+            </form>
+        </script>
+        <script type="text/ng-template" id="/template/input.html" ng-cloak>
+            <form role="form" name="mainCtrl.inputPage">
+                <br />
+                <button ui-sref="home/demo" type="button" class="btn btn-theme" ng-click="mainCtrl.switcher(); mainCtrl.switcher2();">Home</button>
+                <button ui-sref="/get" type="button" class="btn btn-theme">GetAll</button>
+                <button ui-sref="/test" type="button" class="btn btn-theme">Extra</button>
+                <br />
+            </form>
+            <div class="container mtb">
+                <div class="row">
+                    <div class="jumbotron">
+                        <!-- Jumbotron -->
+                        <h1>Jumbotron</h1>
+                        <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                        <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+                    </div><!-- /Jumbotron -->
+                    <div class="col-lg-8">
+                        <h4>Just Get In Touch!</h4>
+                        <div class="hline"></div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                        <form role="form" name="mainCtrl.infoForm" ng-submit="mainCtrl.formPost()">
+                            <div class="form-group">
+                                <label for="InputName1">Your Name</label>
+                                <input type="text" class="form-control" id="exampleInputName1" ng-model="mainCtrl.inputBox.name">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" ng-model="mainCtrl.inputBox.email" clear-input>
+                            </div>
+                            <div class="form-group">
+                                <label for="InputSubject1">Subject</label>
+                                <input type="text" class="form-control" id="exampleInputSubject1" ng-model="mainCtrl.inputBox.subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="message1">Message</label>
+                                <textarea class="form-control" id="message1" rows="3" ng-model="mainCtrl.inputBox.message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-theme">Submit</button>
+                            <button type="reset" class="btn btn-default" value="ClearForm">Clear Form </button>
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                        <h4>Our Address</h4>
+                        <div class="hline"></div>
+                        <p>
+                            16542 Kellog Circle,<br />
+                            Huntington Beach, 92647<br />
+                            United States.<br />
+                        </p>
+                        <p>
+                            Email: hello@solidtheme.com<br />
+                            Tel: +34 8493-4893
+                        </p>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="/template/get.html">
+            <form role="form" name="mainCtrl.getPage">
+                <br />
+                <button ui-sref="/input" type="button" class="btn btn-theme">Submit</button>
+                <button ui-sref="home/demo" type="button" class="btn btn-theme" ng-click="mainCtrl.switcher(); mainCtrl.switcher2();">Home</button>
+                <button ui-sref="/test" type="button" class="btn btn-theme">Extra</button>
+                <br />
+            </form>
+            <div class="col-lg-offset-2" id="testArray">
+                <ul class="container-fluid">
+                    <li ng-repeat="item in mainCtrl.items"
+                        class=""
+                        id="{{item.Id}}">
+                        <div class="">
+                            <div class="">
+                                <p>Name : {{item.Name}} </p>
+                            </div>
+                            <div class="form-group">
+                                <p>Email : {{item.Email}} </p>
+                            </div>
+                            <div class="form-group">
+                                <p>Date Posted : {{item.DateModified | date : 'shortDate'}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p>Subject : {{item.Subject}}</p>
+                            <p><u>Message</u> : {{item.Message}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </script>
+        <!-- *****************************************************************************************************************
+        FOOTER
+        ***************************************************************************************************************** -->
+        <div id="footerwrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4>About</h4>
+                        <div class="hline-w"></div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <h4>Social Links</h4>
+                        <div class="hline-w"></div>
+                        <p>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-tumblr"></i></a>
+                        </p>
+                    </div>
+                    <div class="col-lg-4">
+                        <h4>Our Bunker</h4>
+                        <div class="hline-w"></div>
+                        <p>
+                            16542 Kellog Circle,<br />
+                            Huntington Beach, 92647<br />
+                            United States.<br />
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <br /><!-- /footer -->
+
+        <script type="text/ng-template" id="/template/test.html">
+            <form role="form" name="mainCtrl.testPage">
+                <br />
+                <button ui-sref="/input" type="button" class="btn btn-theme">Submit</button>
+                <button ui-sref="/get" type="button" class="btn btn-theme">GetAll</button>
+                <button ui-sref="home/demo" type="button" class="btn btn-theme" ng-click="mainCtrl.switcher(); mainCtrl.switcher2();">Home</button>
+                <br />
+            </form>
+            <br />
+            <div>
+                <div>
+                    {{mainCtrl.title}}
+                    <input type="text" ng-model="mainCtrl.name" /> {{mainCtrl.name}}
+                    <ul>
+                        <li ng-repeat="cust in mainCtrl.customer | filter:mainCtrl.name | orderBy:'city'"> {{cust.name | uppercase}} - {{cust.city | lowercase}}</li>
+                    </ul>
+                </div>
+                <br />
+                <br />
+            </div>
+        </script>
+    </div><!-- /ng-App -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Scripts/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="~/Scripts/angular-ui-router.min.js"></script>
+    @* google map info (1st '2' scripts below) *@
+    <script src="~/Scripts/AngularJS.googleMap.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSoMAOyII2G-FBsdcJOfeGUZMigvxJYu4&callback=initMap" async defer></script>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/retina-1.1.0.js"></script>
+    <script src="/js/jquery.hoverdir.js"></script>
+    <script src="/js/jquery.hoverex.min.js"></script>
+    <script src="/js/jquery.prettyPhoto.js"></script>
+    <script src="/js/jquery.isotope.min.js"></script>
+    <script src="~/Scripts/ngStorage.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <script>
+        // RenderSection("scripts", required: false)included in _layoutAnimal.
+    </script>
+    <script>
+
+        //(function () {
+        //"use strict";
+        //    angular.module(APPNAME, [])
+        //        .factory(function ($storageService) {
+        //        var savedData = {};
+        //        function set(data) {
+        //            savedData = data;
+        //        }
+        //        function get() {
+        //            return savedData;
+        //        }
+        //        return {
+        //            set: set,
+        //            get: get
+        //        }
+        //    });
+        //})();
+
+        // (function () {
+        //"use strict";
+        //  angular.module(APPNAME, [])
+        //           .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+        //               $urlRouterProvider.when('', '/home/demo');
+        //               $stateProvider
+        //               .state('/home/demo', {
+        //                   url: '/home/demo',
+        //                   templateUrl: '/template/home/demo.html',
+        //                   controller: 'mainController',
+        //                   controllerAs: 'mainCtrl'
+        //               }).state('/demo/2', {
+        //                   url: '/demo/2',
+        //                   templateUrl: '/template/home/demo/2.html',
+        //                   controller: 'mainController',
+        //                   controllerAs: 'mainCtrl'
+        //               });
+        //           }]);
+        //})();
+
+        //(function () {
+        //    "use strict";
+        //    angular.module(APPNAME, [])
+        //    .factory('someService', function () {
+        //        return {
+        //            doSomething: function initMap() {
+        //                var map = new google.maps.Map(document.getElementById('map'), {
+        //                    center: { lat: 61.177549, lng: -149.274354 },
+        //                    zoom: 11
+        //                });
+        //                var infoWindow = new google.maps.InfoWindow({ map: map });
+        //                // Try HTML5 geolocation.
+        //                if (navigator.geolocation) {
+        //                    navigator.geolocation.getCurrentPosition(function (position) {
+        //                        var pos = {
+        //                            lat: position.coords.latitude,
+        //                            lng: position.coords.longitude
+        //                        };
+        //                        infoWindow.setPosition(pos);
+        //                        infoWindow.setContent('You are here!');
+        //                        map.setCenter(pos);
+        //                    }, function () {
+        //                        handleLocationError(true, infoWindow, map.getCenter());
+        //                    });
+        //                } else {
+        //                    // Browser doesn't support Geolocation
+        //                    handleLocationError(false, infoWindow, map.getCenter());
+        //                }
+        //            }
+        //        };
+        //    });
+        //})();
+
+        //(function () {
+        //    "use strict";
+        //    angular.module(APPNAME, [])
+        //    .factory('someService1', function () {
+        //        return {
+        //            doSomething1: function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        //                infoWindow.setPosition(pos);
+        //                infoWindow.setContent(browserHasGeolocation ?
+        //                                      'Error: The Geolocation service failed.' :
+        //                                      'Error: Your browser doesn\'t support geolocation.');
+        //            }
+        //        };
+        //    });
+        //})();
+
+        //(function () {
+        //    "use strict";
+        //    angular.module(APPNAME, [])
+        //    //Inject your service here
+        //    .run(function ($rootScope, someService, someService1) {
+        //        //Look for successful state change.
+        //        //For your ref. on other events.
+        //        //https://github.com/angular-ui/ui-router/wiki#state-change-events
+        //        $rootScope.$on('$stateChangeSuccess', function () {
+        //            //If you don't wanna create the service, you can directly write
+        //            // your function here.
+        //            someService.doSomething();
+        //            someService1.doSomething1();
+        //        });
+        //    })
+        //})();
+
+        //(function () {
+        //    "use strict";
+        //    angular.module(APPNAME, [])
+        //        .factory('$mapService', mapServiceFactory);
+        //    mapServiceFactory.$inject = ['$baseService'];
+        //    function mapServiceFactory($baseService) {
+        //        var aMapServiceObject = AngularJS.googleMap;
+        //        var newService = $baseService.merge(true, {}, aMapServiceObject, $baseService);
+        //        return newService;
+        //    }
+        //})();
+      
+
+
+        (function () {
+            "use strict";
+            angular.module(APPNAME, ['ui.router', 'ngStorage'])
+                .config(function ($stateProvider, $urlRouterProvider) {
+                    $urlRouterProvider.when('', '/landing');
+                    //$urlRouterProvider.rule(function ($injector, $location) {
+                    //    var path = $location.path(), normalized = path.toLowerCase();
+                    //    if (path != normalized) {
+                    //        $location.replace().path(normalized);
+                    //    }
+                    //});
+                    $stateProvider.state('home/demo', {
+                        url: '/landing',
+                        templateUrl: '/template/home.html',
+                        controller: 'mainController as mainCtrl'                   
+                    }).state('/input', {
+                        url: '/input',
+                        templateUrl: '/template/input.html',
+                        controller: 'mainController as mainCtrl'
+                    }).state('/get', {
+                        url: '/get',
+                        templateUrl: '/template/get.html',
+                        controller: 'mainController as mainCtrl'
+                    }).state('/test', {
+                        url: '/test',
+                        templateUrl: '/template/test.html',
+                        controller: 'mainController as mainCtrl'
+                    });
+                })
+
+                .controller('mainController', MainController);
+            MainController.$inject = ['$scope', '$http', '$localStorage'];
+
+            function MainController(
+                $scope
+                //, $state
+                , $http
+                , $localStorage) {
+
+                var vm = this;
+                vm.switcher = null;
+                vm.switcher2 = null;
+                vm.infoForm = {};
+                vm.inputBox = {};
+                vm.dataBox = {};
+                vm.items = {};
+                vm.title = 'Angular Demo area:';
+                vm.customer = [
+                                 { name: 'Patrick Moore', city: 'Torrance' },
+                                 { name: 'Matt Brown', city: 'Saint Louis' },
+                                 { name: 'Mitchelle Magee', city: 'Long Beach' },
+                                 { name: 'Matt Shelbourn', city: 'Pasadena' }
+                ];
+              
+                //vm.myStyle = {                  
+                //    "background": "no-repeat center top",
+                //    "margin-top": "-60px",
+                //    "padding-top": "0px",
+                //    "text-align": "center",
+                //    "background-attachment": "relative",
+                //    "background-position": "center center",
+                //    "min-height": "400px",
+                //    "width": "100%",
+                //    "-webkit-background-size": "100%",
+                //    "-moz-background-size": "100%",
+                //    "-o-background-size": "100%",
+                //    "background-size": "100%",
+                //    "-webkit-background-size": "cover",
+                //    "-moz-background-size": "cover",
+                //    "-o-background-size": "cover",
+                //    "background-size": "cover"
+                //}
+
+                vm.$scope = $scope;
+                //vm.$state = $state;
+                vm.$http = $http;
+                vm.$localStorage = $localStorage;
+
+                vm.formPost = _formPost;
+                vm.onSuccess = _onSuccess;
+                vm.postSuccess = _postSuccess;
+                vm.onError = _onError;
+
+                render();
+
+                function render() {
+                    
+                    console.log('Rendering');             
+                    if (vm.$localStorage.replace != {}) {
+                        vm.items = vm.$localStorage.replace;                     
+                        return vm.items;
+                    }
+                    else {
+                        $http.get('/api/registry').then(vm.onSuccess, vm.onError);
+                    }
+                }
+
+
+
+                vm.switcher = function initMap() {
+                    console.log('google map rending?');
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: { lat: 61.177549, lng: -149.274354 },
+                        zoom: 11
+                    });
+                    var infoWindow = new google.maps.InfoWindow({ map: map });
+
+                    // Try HTML5 geolocation.
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            var pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+
+                            infoWindow.setPosition(pos);
+                            infoWindow.setContent('You are here!');
+                            map.setCenter(pos);
+                        }, function () {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                        });
+                    } else {
+                        // Browser doesn't support Geolocation
+                        handleLocationError(false, infoWindow, map.getCenter());
+                    }
+                }
+
+                vm.switcher2 = function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent(browserHasGeolocation ?
+                                          'Error: The Geolocation service failed.' :
+                                          'Error: Your browser doesn\'t support geolocation.');
+                }
+
+
+
+                function _onSuccess(objArray) {
+                    console.log(objArray.data.Items);
+                    vm.items = objArray.data.Items;
+                    vm.$localStorage.replace = vm.items;
+                    return vm.$localStorage;
+                }
+
+                function _onError(jqXhr, error) {
+                    console.log(jqXhr);
+                }
+
+                function _formPost() {
+                    vm.dataBox = JSON.stringify(vm.inputBox);
+                    console.log(vm.dataBox);
+                    $http.post('/api/registry', vm.dataBox).then(vm.postSuccess, vm.onError);
+                }
+
+                function _postSuccess(data) {
+                    $http.get('/api/registry').then(vm.onSuccess, vm.onError);
+                    vm.inputBox = {};
+                    vm.infoForm.$setPristine();
+                    vm.infoForm.$setUntouched();
+                    console.log(data.status);
+                    console.log(data.statusText);
+                }
+
+            }
+        })();
+    </script>
+}
